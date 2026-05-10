@@ -1,7 +1,7 @@
 import cv2
 import mediapipe as mp
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(static_image_mode=False, max_num_hands=1, min_detection_confidence=0.7)
@@ -53,10 +53,10 @@ while cap.isOpened():
                 error_y = 0
 
             # PIDs
-            pid_x = PID(kp=0.5, ki=0.01, kd=0.1)
+            pid_x = PID(kp=0.5, ki=0.0, kd=0.0)
             velocity_x = pid_x.calculate(error_x)
 
-            pid_y = PID(kp=0.5, ki=0.01, kd=0.1)
+            pid_y = PID(kp=0.5, ki=0.0, kd=0.0)
             velocity_y = pid_y.calculate(error_y)
 
             # Print them to see the "Control Signal" in the terminal
